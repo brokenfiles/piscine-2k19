@@ -79,6 +79,7 @@ int		send_to_algo(char *content, int ac, t_map *map)
 int		main(int ac, char **av)
 {
 	t_map	map;
+	int	index;
 
 	index = 0;
 	if (ac < 2)
