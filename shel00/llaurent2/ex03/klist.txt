@@ -1,5 +1,0 @@
-Credentials cache: API:53D6208C-DBB0-457F-91F3-D2EF8EB75C8A
-        Principal: llaurent@42.FR
-
-  Issued                Expires               Principal
-Jul 29 13:35:04 2019  Aug  5 13:35:02 2019  krbtgt/42.FR@42.FR
