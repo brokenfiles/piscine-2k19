@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/bsq.h"
+#include <stdio.h>
 
 char	*get_content(char *file_name)
 {
@@ -36,19 +37,21 @@ char	*get_content(char *file_name)
 	return (content);
 }
 
-int		get_number_of_line(char *str, int *index)
+int		get_number_of_line(char *str, int stop)
 {
 	int	result;
+	int	index;
 
+	index = 0;
 	result = 0;
 	if (!str)
 		return (0);
-	while ((str[*index] >= 8 && str[*index] <= 13) || str[*index] == ' ')
-		*index += 1;
-	while (str[*index] >= '0' && str[*index] <= '9')
+	while (((str[index] >= 8 && str[index] <= 13) || str[index] == ' ') && index <= stop)
+		index += 1;
+	while ((str[index] >= '0' && str[index] <= '9') && index <= stop)
 	{
-		result = result * 10 + str[*index] - '0';
-		*index += 1;
+		result = result * 10 + str[index] - '0';
+		index += 1;
 	}
 	return (result);
 }
@@ -66,14 +69,14 @@ t_data	get_data(char *map_content, int *index_get_map)
 	char	*first_line;
 	int		index;
 
-	index = 0;
 	*index_get_map = 1;
 	splitted = ft_split(map_content, "\n");
 	first_line = splitted[0];
-	data.line_num = get_number_of_line(first_line, &index);
-	data.c_void = map_content[index++];
-	data.c_obs = map_content[index++];
-	data.c_full = map_content[index++];
+	index = ft_strlen(first_line) - 1;
+	data.c_full = first_line[index--];
+	data.c_obs = first_line[index--];
+	data.c_void = first_line[index--];
+	data.line_num = get_number_of_line(first_line, index);
 	free(splitted);
 	return (data);
 }
